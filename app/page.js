@@ -45,6 +45,7 @@ export default function Home() {
       </section>
 
       <section>
+        <h2>OBJECT ROTATE IN 360 deg AND ZOOM IN OR OUT USING MOUSE</h2>
         <VRGame />
       </section>
 
