@@ -10,9 +10,14 @@ import Leva from "@/components/leva";
 import VRGame from "@/components/VrGame";
 import InteractiveScene from "@/components/InterectiveScene";
 import ViewImage from "@/components/ViewImage";
+import NightScene from "@/components/NightScene";
 
 export default function Home() {
+  const [showNightScene, setShowNightScene] = useState(false);
 
+  const handleNightSceneToggle = () => {
+    setShowNightScene(!showNightScene);
+  };
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -41,7 +46,13 @@ export default function Home() {
         <VRGame />
       </section>
 
-     
+      <section>
+        <h2>CLICK ON BUTTON TO VIEW NIGHT SCENE</h2>
+        <button onClick={handleNightSceneToggle} style={{ padding: "10px", margin: "10px" }}>
+          {showNightScene ? "Hide Night Scene" : "Show Night Scene"}
+        </button>
+        {showNightScene && <NightScene />}
+      </section>
 
       <section>
         <h2>MOVE THIS IMAGE IN 360 DEGREE</h2>
