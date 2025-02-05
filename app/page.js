@@ -1,4 +1,5 @@
 "use client";
+import dynamic from 'next/dynamic'; // Add this import
 
 import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
@@ -10,7 +11,8 @@ import Leva from "@/components/leva";
 import VRGame from "@/components/VrGame";
 import InteractiveScene from "@/components/InterectiveScene";
 import ViewImage from "@/components/ViewImage";
-import NightScene from "@/components/NightScene";
+
+const NightScene = dynamic(() => import('@/components/NightScene'), { ssr: false });
 
 export default function Home() {
   const [showNightScene, setShowNightScene] = useState(false);
@@ -66,3 +68,4 @@ export default function Home() {
     </div>
   );
 }
+
