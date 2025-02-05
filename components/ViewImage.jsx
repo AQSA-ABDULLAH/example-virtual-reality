@@ -3,7 +3,7 @@ import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import * as THREE from "three";
 
-export default function Scene() {
+export default function ViewImage() {
   // Using a reliable direct 360-degree image URL
   const texture = useLoader(
     THREE.TextureLoader,

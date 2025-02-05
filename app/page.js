@@ -8,9 +8,8 @@ import RotatingTorus from "@/components/RotatingTorus";
 import TourKnot from "@/components/TourKnot";
 import Leva from "@/components/leva";
 import VRGame from "@/components/VrGame";
-
-import Scene from "@/components/Scene";
 import InteractiveScene from "@/components/InterectiveScene";
+import ViewImage from "@/components/ViewImage";
 
 export default function Home() {
 
@@ -38,21 +37,21 @@ export default function Home() {
         <Leva />
       </section>
 
-      {/* <section>
+      <section>
         <VRGame />
-      </section> */}
+      </section>
 
      
-{/* 
+
       <section>
         <h2>MOVE THIS IMAGE IN 360 DEGREE</h2>
-        <Scene />
+        <ViewImage />
       </section>
 
       <div>
         <h1>Interactive 3D Scene</h1>
         <InteractiveScene />
-      </div> */}
+      </div>
     </div>
   );
 }
