@@ -1,101 +1,79 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import RotatingBox from "@/components/RotatingBox";
+import RotatingSphere from "@/components/Circle";
+import RotatingTorus from "@/components/RotatingTorus";
+import TourKnot from "@/components/TourKnot";
+import Leva from "@/components/leva";
+import VRGame from "@/components/VrGame";
+import NightScene from "@/components/NightScene";
+import Scene from "@/components/360Scene";
+import InteractiveScene from "@/components/InterectiveScene";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showNightScene, setShowNightScene] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  useEffect(() => {
+    // This ensures the code runs only on the client-side
+    setIsClient(true);
+  }, []);
+
+  const handleNightSceneToggle = () => {
+    setShowNightScene(!showNightScene);
+  };
+
+  // If not on the client-side, return null to prevent SSR errors
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <div style={{ textAlign: "center" }}>
+      <section>
+        <Canvas style={{ width: "90vw", height: "95vh" }}>
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[2, 2, 2]} intensity={1} />
+          <RotatingBox position={[2, 0, 0]} args={[1, 1, 1]} color="orange" />
+          <RotatingBox position={[-2, 0, 0]} args={[1, 1, 1]} color="orange" />
+          <RotatingBox position={[2, 4, 0]} args={[1, 2, 0]} color="orange" />
+          <RotatingBox position={[2, -4, 0]} args={[1, 2, 0]} color="orange" />
+          <RotatingSphere position={[0, 2, 0]} radius={1} color="blue" />
+          <RotatingTorus position={[0, -2, 0]} radius={2} tube={0.5} color="green" />
+        </Canvas>
+      </section>
+
+      <section>
+        <TourKnot />
+      </section>
+
+      <section>
+        <Leva />
+      </section>
+
+      <section>
+        <VRGame />
+      </section>
+
+      {/* <section>
+        <h2>CLICK ON BUTTON TO VIEW NIGHT SCENE</h2>
+        <button onClick={handleNightSceneToggle} style={{ padding: "10px", margin: "10px" }}>
+          {showNightScene ? "Hide Night Scene" : "Show Night Scene"}
+        </button>
+        {showNightScene && <NightScene />}
+      </section> */}
+
+      <section>
+        <h2>MOVE THIS IMAGE IN 360 DEGREE</h2>
+        <Scene />
+      </section>
+
+      <div>
+        <h1>Interactive 3D Scene</h1>
+        <InteractiveScene />
+      </div>
     </div>
   );
 }
