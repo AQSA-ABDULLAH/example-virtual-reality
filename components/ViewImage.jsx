@@ -2,13 +2,20 @@
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import * as THREE from "three";
+import { useEffect, useState } from "react";
 
 export default function ViewImage() {
-  // Using a reliable direct 360-degree image URL
-  const texture = useLoader(
-    THREE.TextureLoader,
-    "/assest/chair.jpg"
-  );
+  const [texture, setTexture] = useState(null);
+
+  useEffect(() => {
+    // Ensure texture is loaded only on the client side
+    const loader = new THREE.TextureLoader();
+    loader.load("/assets/chair.jpg", (loadedTexture) => {
+      setTexture(loadedTexture);
+    });
+  }, []);
+
+  if (!texture) return <div>Loading...</div>; // Loading state
 
   return (
     <div style={{ width: "100vw", height: "100vh", margin: 0 }}>
@@ -24,6 +31,7 @@ export default function ViewImage() {
     </div>
   );
 }
+
 
 
 
