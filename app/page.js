@@ -8,27 +8,12 @@ import RotatingTorus from "@/components/RotatingTorus";
 import TourKnot from "@/components/TourKnot";
 import Leva from "@/components/leva";
 import VRGame from "@/components/VrGame";
-import NightScene from "@/components/NightScene";
-import Scene from "@/components/360Scene";
+
+import Scene from "@/components/Scene";
 import InteractiveScene from "@/components/InterectiveScene";
 
 export default function Home() {
-  const [showNightScene, setShowNightScene] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    // This ensures the code runs only on the client-side
-    setIsClient(true);
-  }, []);
-
-  const handleNightSceneToggle = () => {
-    setShowNightScene(!showNightScene);
-  };
-
-  // If not on the client-side, return null to prevent SSR errors
-  if (!isClient) {
-    return null;
-  }
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -53,18 +38,12 @@ export default function Home() {
         <Leva />
       </section>
 
-      <section>
-        <VRGame />
-      </section>
-
       {/* <section>
-        <h2>CLICK ON BUTTON TO VIEW NIGHT SCENE</h2>
-        <button onClick={handleNightSceneToggle} style={{ padding: "10px", margin: "10px" }}>
-          {showNightScene ? "Hide Night Scene" : "Show Night Scene"}
-        </button>
-        {showNightScene && <NightScene />}
+        <VRGame />
       </section> */}
 
+     
+{/* 
       <section>
         <h2>MOVE THIS IMAGE IN 360 DEGREE</h2>
         <Scene />
@@ -73,7 +52,7 @@ export default function Home() {
       <div>
         <h1>Interactive 3D Scene</h1>
         <InteractiveScene />
-      </div>
+      </div> */}
     </div>
   );
 }
