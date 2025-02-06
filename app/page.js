@@ -1,6 +1,6 @@
 "use client";
 import dynamic from 'next/dynamic'; // Add this import
-
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import RotatingBox from "@/components/RotatingBox";
@@ -72,6 +72,14 @@ export default function Home() {
         <h2>NAVIGATION</h2>
         <Navigation />
       </section>
+
+      <div>
+        <h1>Welcome to the Multi-Room Navigation App</h1>
+        <Link href="/room1">
+          {/* No <a> tag is needed; Link automatically renders it */}
+          Enter Room 1
+        </Link>
+      </div>
     </div>
   );
 }
