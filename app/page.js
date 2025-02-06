@@ -11,6 +11,7 @@ import Leva from "@/components/leva";
 import VRGame from "@/components/VrGame";
 import InteractiveScene from "@/components/InterectiveScene";
 import ViewImage from "@/components/ViewImage";
+import Navigation from '../components/Navigation';
 
 const NightScene = dynamic(() => import('@/components/NightScene'), { ssr: false });
 
@@ -66,6 +67,11 @@ export default function Home() {
         <h1>Interactive 3D Scene</h1>
         <InteractiveScene />
       </div>
+
+      <section>
+        <h2>NAVIGATION</h2>
+        <Navigation />
+      </section>
     </div>
   );
 }
